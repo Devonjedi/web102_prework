@@ -102,3 +102,28 @@ const template = `
 `
 
 export default games;
+
+// ● What type of information is stored in the constant games?
+/*
+name
+description
+pledged
+goal
+backers
+img
+*/
+
+// ● How many properties does each game have?
+// 6 properties
+// ● What does each different property represent?
+// each property represents the following:
+// name: name of the game
+// description: description of the game
+// pledged: amount pledged
+// goal: goal amount
+// backers: number of backers
+// img: image of the game
+
+// ● How many games are there?
+// 11 games
+
