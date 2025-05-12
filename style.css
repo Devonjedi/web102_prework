@@ -78,3 +78,36 @@ button {
     margin: 1%;
     border-radius: 7px;
 }
+
+/* Add these styles for the progress bars */
+.funding-info {
+  margin-top: 10px;
+}
+
+.progress-container {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  height: 10px;
+  width: 100%;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background-color: #4CAF50;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.funded .progress-bar {
+  background-color: #4CAF50; /* Green for funded games */
+}
+
+.unfunded .progress-bar {
+  background-color: #FF9800; /* Orange for unfunded games */
+}
+
+.funding-text {
+  margin: 5px 0;
+  font-size: 0.9em;
+}

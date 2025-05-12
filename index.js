@@ -29,11 +29,13 @@ const gamesContainer = document.getElementById("games-container");
 // Create a for loop within the addGamesToPage function that loops over each item in the argument games.
 // You can expect that games will be an array of objects with the same structure as GAMES_JSON
 function addGamesToPage(games) {
-
     // loop over each item in the data
     for(let i = 0; i< games.length; i++) {
         // create a variable that stores the current game object
-        const game= games[i];
+        const game = games[i];
+
+        // Calculate funding percentage
+        const fundingPercentage = Math.min(Math.round((game.pledged / game.goal) * 100), 100);
 
         // create a new div element, which will become the game card
         const gameCard = document.createElement("div");
@@ -41,20 +43,29 @@ function addGamesToPage(games) {
         // add the class game-card to the list
         gameCard.classList.add("game-card");
 
-        // set the inner HTML using a template literal to display some info
+        // Add funded/unfunded class for styling
+        if (game.pledged >= game.goal) {
+            gameCard.classList.add("funded");
+        } else {
+            gameCard.classList.add("unfunded");
+        }
+
+        // set the inner HTML using a template literal to display info with progress bar
         gameCard.innerHTML = `
-            <img class="game-img" src="${game.img}" alt="${game.name} image">`
-            + `<h2 class="game-name">${game.name}</h2>`
-            + `<p class="game-description">${game.description}</p>`
-        // TIP: if your images are not displaying, make sure there is space
-        // between the end of the src attribute and the end of the tag ("/>")
+            <img class="game-img" src="${game.img}" alt="${game.name} image">
+            <h2 class="game-name">${game.name}</h2>
+            <p class="game-description">${game.description}</p>
+            <div class="funding-info">
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: ${fundingPercentage}%"></div>
+                </div>
+                <p class="funding-text">${fundingPercentage}% funded: $${game.pledged.toLocaleString()} of $${game.goal.toLocaleString()}</p>
+            </div>
+        `;
 
-
-        // Append the newly created div to the correct element in the DOM so that the game cards appear under the
-            // "Our Games" heading
+        // Append the newly created div to the DOM
         gamesContainer.appendChild(gameCard);
     }
-    // return the gamesContainer element
     return gamesContainer;
 }
 // call the function we just defined using the correct variable
